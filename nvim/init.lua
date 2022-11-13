@@ -1,5 +1,0 @@
-require('settings')
-require('plugins')
-require('colorscheme')
-require('mappings')
-require('lsp-config')
