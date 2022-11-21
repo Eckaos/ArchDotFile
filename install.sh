@@ -21,6 +21,8 @@ paru -S lua-language-server-git clang
 paru -S systemd-numlockontty
 #install config
 cp -r "$INSTALL_PATH/home/." ~
+(cd ~/.config/leftwm/themes; ln -s grust current)
+chmod u+x ~/.config/leftwm/themes/grust/up ~/.config/leftwm/themes/grust/down
 
 sudo os-prober
 sudo grub-mkconfig -o /boot/grub/grub.cfg
