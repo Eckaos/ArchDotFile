@@ -1,0 +1,11 @@
+#!/bin/sh
+
+CONNECTION=$(nmcli -t d | grep -F 'connected' | head -n 1)
+TYPE=$(echo $CONNECTION | awk -F ':' '{print $2}')
+NAME=""
+
+if [[ $TYPE == "wifi" ]]; then
+	NAME=$(echo $CONNECTION | awk -F ':' '{print $4}'})
+fi
+
+echo -n "{\"type\":\"$TYPE\",\"value\":\"$NAME\"}"

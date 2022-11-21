@@ -1,0 +1,9 @@
+(deflisten music :initial "" `mpc -f "[[%artist% - ]%title%\n]|[%file%]\n"`)
+(defvar musicIcon "")
+
+(defwidget music []
+	(box	:class "music"
+		:orientation "h"
+		:space-evenly false
+		:halign "center"
+		{music != "" ? "${musicIcon}${music}" : ""}))

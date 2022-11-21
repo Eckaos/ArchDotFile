@@ -1,0 +1,31 @@
+(include "./widget/base/base.yuck")
+(include "./widget/battery/icons.yuck")
+
+(defwidget battery [bat]
+	(base	:icon 	{
+				bat.status == "Charging" ? 	
+				bat.capacity >= 100 ? charge100	:
+				bat.capacity >= 90 ? charge90	:
+				bat.capacity >= 80 ? charge80	:
+				bat.capacity >= 70 ? charge70	:
+				bat.capacity >= 60 ? charge60	:
+				bat.capacity >= 50 ? charge50	:
+				bat.capacity >= 40 ? charge40	:
+				bat.capacity >= 30 ? charge30	:
+				bat.capacity >= 20 ? charge20	:
+				bat.capacity >= 10 ? charge10	:
+				charge0
+								: 
+				bat.capacity >= 100 ? bat100	:
+				bat.capacity >= 90 ? bat90	:
+				bat.capacity >= 80 ? bat80	:
+				bat.capacity >= 70 ? bat70	:
+				bat.capacity >= 60 ? bat60	:
+				bat.capacity >= 50 ? bat50	:
+				bat.capacity >= 40 ? bat40	:
+				bat.capacity >= 30 ? bat30	:
+				bat.capacity >= 20 ? bat20	:
+				bat.capacity >= 10 ? bat10	:
+				bat0
+			}
+		:value "${bat.capacity}%"))

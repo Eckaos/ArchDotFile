@@ -1,0 +1,37 @@
+(include "./widget/base/base.yuck")
+(include "./widget/music/music.yuck")
+(include "./widget/connection/connection.yuck")
+(include "./widget/volume/volume.yuck")
+(include "./widget/battery/battery.yuck")
+
+(defwidget bar []
+	(centerbox	:orientation "h"
+			:class "bar"
+	(workspaces)
+	(music)
+	(sidestuff)))
+
+(deflisten wm-tags "leftwm-state -w 0 -t ~/.config/leftwm/themes/current/eww/eww.liquid")
+(defwidget workspaces []
+		(literal	:valign "center"
+				:content wm-tags))
+
+(defwidget sidestuff []
+	(box	:class "sidestuff"
+		:orientation "h"
+		:space-evenly false
+		:halign "end"
+		(connection)
+		(volume)
+		(battery :bat "${EWW_BATTERY.BAT0}")))
+
+(defwindow bar
+	:monitor 0
+	:windowtype "dock"
+	:geometry (geometry	:x "0%"
+				:y "0%"
+				:width "100%"
+				:height "5%"
+				:anchor "bottom left")
+	:reserve (struts :distance "5%" :side "bottom")
+	(bar))

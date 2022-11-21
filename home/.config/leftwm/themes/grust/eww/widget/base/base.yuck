@@ -1,0 +1,9 @@
+(defwidget base [icon value]
+	(box	:orientation "h"
+		:class "base"
+		:space-evenly false
+		(image 	:class "icon" 
+			:path icon)
+		(box	:class "value" 
+			:visible {value != "" ? true : false}
+			value)))

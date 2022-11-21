@@ -1,0 +1,17 @@
+(include "./widget/base/base.yuck")
+
+(defvar mute "./widget/volume/icons/audio-volume-muted-symbolic.svg")
+(defvar volume33 "./widget/volume/icons/audio-volume-low-symbolic.svg")
+(defvar volume66 "./widget/volume/icons/audio-volume-medium-symbolic.svg")
+(defvar volume100 "./widget/volume/icons/audio-volume-high-symbolic.svg")
+
+(defpoll volume :interval "1s" 
+		:initial `{"value":"0","status":false}` 
+		"./widget/volume/getVolume")
+
+(defwidget volume []
+	(base	:icon {volume.status == true ? mute :
+			volume.value <= 33  ? volume33  :
+			volume.value <= 66  ? volume66  :
+			volume100}
+		:value "${volume.value}%"))

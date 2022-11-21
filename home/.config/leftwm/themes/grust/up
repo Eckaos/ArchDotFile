@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+# [ BASIC ] ##################################################################
+# down the last running theme
+if [ -f "/tmp/leftwm-theme-down" ]; then
+    /tmp/leftwm-theme-down
+    rm /tmp/leftwm-theme-down
+fi
+ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
+
+# set the theme.toml config
+leftwm-command "LoadTheme $SCRIPTPATH/theme.toml"
+##############################################################################
+
+
+# [ run stuff ] ##############################################################
+
+numlockx on &
+
+# picom (if it exists)
+if [ -x "$(command -v picom)" ]; then
+  picom --config $HOME/.config/leftwm/themes/amber/picom/picom.config &> /dev/null &
+fi
+##############################################################################
+
+
+
+
+# [ WALLPAPERS ] #############################################################
+# 2) start - set one wallpaper for all displays ----------------------------+
+#if [ -x "$(command -v feh)" ]; then
+#  feh --bg-fill "$scriptpath"/wallpapers/atlas-ark-gruvbox-simple-lines.png
+#fi
+# end ----------------------------------------------------------------------+
+
+
+# 3) START - set MULTIPLE wallpapers for all displays ----------------------+
+# NOTE: the last image path DO NOT end with "\"
+if [ -x "$(command -v feh)" ]; then
+  feh --bg-fill \
+  "$SCRIPTPATH"/wallpapers/atlas-ark-gruvbox-arch3.png \
+  "$SCRIPTPATH"/wallpapers/atlas-ark-gruvbox-arch3.png
+fi
+# END ----------------------------------------------------------------------+
+##############################################################################
+
+# [ KEYMAP ] #################################################################
+KEYBINDINGS=/tmp/leftwm-keybindings
+if [ -f "$KEYBINDINGS" ]; then
+    rm $KEYBINDINGS
+fi
+leftwm-check -v | \
+grep Keybind | \
+sed -e "s/Keybind: Keybind { command: //g;s/ } true//;s/ } false//" \
+> $KEYBINDINGS
+
+
+KEYMAP=/tmp/leftwm-keymap
+if [ -f "$KEYMAP" ]; then
+    rm $KEYMAP
+fi
+
+sort $KEYBINDINGS | \
+tr -d '"' | \
+sed -e "s/modifier: //g;s/key: //;s/value: None//;s/value: Some(//;s/)//;s/modkey,/modkey +/" | \
+awk -F, '{print $3","$4","$1","$2}' | \
+column -s ',' -t \
+> $KEYMAP
+##############################################################################
+
+
+
+
+
+# [ START STATUSBAR ] #########################################################
+pkill eww &
+index=0
+sizes=( $(leftwm-state -q -n -t $SCRIPTPATH/sizes.liquid | sed -r '/^\s*$/d' ) )
+eww -c $SCRIPTPATH/eww open bar
+#for size in "${sizes[@]}"
+#do
+#        eww -c $SCRIPTPATH open bar$index
+#        let index=index+1
+#done
+##############################################################################
+
+
