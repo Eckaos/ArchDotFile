@@ -8,7 +8,9 @@ rustup default stable
 mkdir -p software/paru
 # install paru
 git clone https://aur.archlinux.org/paru.git ~/software/paru
-(cd ~/software/paru; makepkg -si)
+cd ~/software/paru
+makepkg -si
+cd
 #install desktop environment
 paru -S leftwm eww
 
@@ -21,7 +23,9 @@ paru -S lua-language-server-git clang
 paru -S systemd-numlockontty
 #install config
 cp -r "$INSTALL_PATH/home/." ~
-(cd ~/.config/leftwm/themes; ln -s grust current)
+cd ~/.config/leftwm/themes
+ln -s grust current
+cd
 chmod u+x ~/.config/leftwm/themes/grust/up ~/.config/leftwm/themes/grust/down
 
 sudo os-prober
