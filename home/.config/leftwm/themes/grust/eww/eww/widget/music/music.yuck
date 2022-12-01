@@ -1,0 +1,6 @@
+(defpoll music :interval "1s" :initial "" `mpc current`)
+(defvar musicIcon "./widget/music/icons/emblem-music-symbolic.svg")
+
+(defwidget music []
+    (base   :icon musicIcon
+            :value music))

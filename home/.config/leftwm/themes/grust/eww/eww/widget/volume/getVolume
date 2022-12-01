@@ -1,0 +1,12 @@
+#!/bin/sh
+
+VALUE=$(pamixer --get-volume) 
+if [[ $VALUE == "" ]];then
+	VALUE=0
+fi
+MUTE=$(pamixer --get-mute)
+if [[ $MUTE == "" ]];then
+	MUTE="false"
+fi
+
+echo -n "{\"value\":\"$VALUE\",\"status\":$MUTE}"

@@ -1,0 +1,15 @@
+(include "./widget/base/base.yuck")
+
+(defpoll connection_data	:interval "1s"
+				:initial `{"value":"","type":""}`
+				"./widget/connection/getConnection")
+
+(defvar wifi_icon_path "./widget/connection/icons/network-wireless-symbolic.svg")
+(defvar ethernet_icon_path "./widget/connection/icons/network-wired-symbolic.svg")
+(defvar no_connection_icon_path "./widget/connection/icons/network-wired-no-route-symbolic.svg")
+
+(defwidget connection []
+	(base	:icon {connection_data.type == "" ? no_connection_icon_path :
+                    connection_data.type == "ethernet" ? ethernet_icon_path :
+                    wifi_icon_path}
+		:value "${connection_data.value}"))

@@ -1,0 +1,7 @@
+(defpoll date_value :interval "1s" `date "+%d/%m/%Y"`)
+
+(defwidget date []
+	(box	:orientation "h"
+		:class "date widget"
+		:space-evenly false
+		(box	:class "date" "${date_value}")))
