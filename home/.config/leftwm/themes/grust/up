@@ -18,10 +18,7 @@ leftwm-command "LoadTheme $SCRIPTPATH/theme.toml"
 
 numlockx on &
 
-# picom (if it exists)
-if [ -x "$(command -v picom)" ]; then
-  picom --config $HOME/.config/leftwm/themes/amber/picom/picom.config &> /dev/null &
-fi
+picom --config ~/.config/leftwm/themes/grust/picom/picom.default.config &> /dev/null &
 ##############################################################################
 
 

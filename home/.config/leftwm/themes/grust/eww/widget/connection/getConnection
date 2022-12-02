@@ -5,7 +5,7 @@ TYPE=$(echo $CONNECTION | awk -F ':' '{print $2}')
 NAME=""
 
 if [[ $TYPE == "wifi" ]]; then
-	NAME=$(echo $CONNECTION | awk -F ':' '{print $4}'})
+	NAME=$(echo $CONNECTION | awk -F ':' '{print $4}')
 fi
 
 echo -n "{\"type\":\"$TYPE\",\"value\":\"$NAME\"}"

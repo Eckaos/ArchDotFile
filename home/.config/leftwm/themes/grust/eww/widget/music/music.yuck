@@ -1,9 +1,8 @@
-(deflisten music :initial "" `mpc -f "[[%artist% - ]%title%\n]|[%file%]\n"`)
-(defvar musicIcon "")
+(defpoll music :interval "1s" :initial "" `mpc current`)
+(defvar musicIcon "./widget/music/icons/emblem-music-symbolic.svg")
+
 
 (defwidget music []
-	(box	:class "music"
-		:orientation "h"
-		:space-evenly false
-		:halign "center"
-		{music != "" ? "${musicIcon}${music}" : ""}))
+    (box :visible {music == "" ? false : true}
+        (base   :icon musicIcon
+                :value music)))

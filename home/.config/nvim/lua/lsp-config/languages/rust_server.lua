@@ -2,11 +2,14 @@ local base = require('lsp-config.languages.base')
 
 local opts = {
     tools = {
-        autoSetHints = true,
+        runnables = {
+            use_telescope = true,
+        },
         inlay_hints = {
+            auto = true,
             show_parameter_hints = false,
-            parameter_hints_prefix = '',
-            other_hints_prefix = '',
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
         },
     },
     server = {

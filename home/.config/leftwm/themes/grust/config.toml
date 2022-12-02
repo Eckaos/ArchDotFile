@@ -22,13 +22,6 @@ disable_current_tag_swap = false
 focus_behaviour = "Sloppy"
 focus_new_windows = true
 
-
-[[keybind]]
-command = "Execute"
-value = "dmenu_run -p 'Run: ' -nb '#ffb300' -nf '#000000' -sb '#333333' -sf '#FFFFFF'"
-modifier = ["modkey"]
-key = "p"
-
 [[keybind]]
 command = "Execute"
 value = "$HOME/.config/leftwm/themes/current/rofi/launcher.sh"

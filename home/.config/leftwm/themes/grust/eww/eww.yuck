@@ -3,6 +3,8 @@
 (include "./widget/connection/connection.yuck")
 (include "./widget/volume/volume.yuck")
 (include "./widget/battery/battery.yuck")
+(include "./widget/time/time.yuck")
+(include "./widget/date/date.yuck")
 
 (defwidget bar []
 	(centerbox	:orientation "h"
@@ -23,7 +25,9 @@
 		:halign "end"
 		(connection)
 		(volume)
-		(battery :bat "${EWW_BATTERY.BAT0}")))
+		(battery :bat "${EWW_BATTERY.BAT0}")
+        (time)
+        (date)))
 
 (defwindow bar
 	:monitor 0
